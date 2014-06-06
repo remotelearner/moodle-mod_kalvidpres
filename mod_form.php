@@ -49,17 +49,17 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
             $sr_unconf_id  = local_kaltura_get_player_uiconf('mymedia_screen_recorder');
             $host = local_kaltura_get_host();
             $url = new moodle_url("{$host}/p/{$partner_id}/sp/{$partner_id}/ksr/uiconfId/{$sr_unconf_id}");
-            
+
             // Check if connection to Kaltura can be established
             if ($connection) {
                 $PAGE->requires->js($url, true);
                 $PAGE->requires->js('/local/kaltura/js/screenrecorder.js', true);
-    
+
                 $PAGE->requires->js('/local/kaltura/js/jquery.js', true);
                 $PAGE->requires->js('/local/kaltura/js/swfobject.js', true);
                 $PAGE->requires->js('/local/kaltura/js/kcwcallback.js', true);
-    
-    
+
+
                 $jsmodule = array(
                     'name'     => 'local_kaltura',
                     'fullpath' => '/local/kaltura/js/kaltura.js',
@@ -80,19 +80,19 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
                             array('checkingforjava', 'kalvidpres')
                     )
                 );
-    
+
                 $courseid = get_courseid_from_context($PAGE->context);
                 $conversion_script  = "../local/kaltura/check_conversion.php?courseid={$courseid}&entry_id=";
-    
+
                 $kcw                = local_kaltura_get_kcw('pres_uploader', true);
                 $panel_markup       = $this->get_popup_markup();
-    
+
                 $ksu_ui_conf        = local_kaltura_get_player_uiconf('simple_uploader');
                 $uploader_url       = local_kaltura_get_host() . '/kupload/ui_conf_id/' . $ksu_ui_conf;
                 $flashvars          = local_kaltura_get_uploader_flashvars(true);
-    
+
                 $progress_bar_markup = $this->draw_progress_bar();
-    
+
                 $PAGE->requires->js_init_call('M.local_kaltura.video_presentation',
                                               array($conversion_script, $panel_markup,
                                                     $uploader_url, $flashvars,
@@ -225,10 +225,10 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
 
         // Check of KSR is enabled via config or capability
         if (!empty($this->_cm)) {
-            $context       = get_context_instance(CONTEXT_MODULE, $this->_cm->id);
+            $context       = context_module::instance($this->_cm->id);
         } else {
 
-            $context       = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+            $context       = context_course::instance($COURSE->id);
         }
 
         if ($enable_ksr && has_capability('mod/kalvidpres:screenrecorder', $context)) {
