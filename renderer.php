@@ -33,7 +33,7 @@ class mod_kalvidpres_renderer extends plugin_renderer_base {
 
         $output = '';
         $output .= html_writer::start_tag('b');
-        $output .= html_writer::tag('div', $title);
+        $output .= html_writer::div($title);
         $output .= html_writer::end_tag('b');
         $output .= html_writer::empty_tag('br');
 
@@ -43,13 +43,11 @@ class mod_kalvidpres_renderer extends plugin_renderer_base {
     function video_notification_bar() {
         $output = '';
 
-        $attr = array('id' => 'notification',
-                      'class' => 'notification');
-        $output .= html_writer::tag('div', '', $attr);
+        $attr = array('id' => 'notification');
+        $output .= html_writer::div('', 'notification', $attr);
 
         $attr = array('id' => 'video_presentation_tag');
-        $output .= html_writer::tag('div', '', $attr);
-
+        $output .= html_writer::div('', 'notification', $attr);
 
         return $output;
 
@@ -79,7 +77,7 @@ class mod_kalvidpres_renderer extends plugin_renderer_base {
 
             $entry_obj = local_kaltura_get_ready_entry_object($kalvidpres->entry_id);
             $player_markup = local_kaltura_get_kdp_presentation_player($entry_obj, $admin_mode);
-            $output = html_writer::tag('div', $player_markup);
+            $output = html_writer::div($player_markup);
         }
 
         return $output;
@@ -90,15 +88,10 @@ class mod_kalvidpres_renderer extends plugin_renderer_base {
 
         // Panel markup to load the KCW
         $attr = array('id' => 'video_pres_panel');
-        $output .=  html_writer::start_tag('div', $attr);
-
-        $attr = array('class' => 'hd');
-        $output .= html_writer::tag('div', '', $attr);
-
-        $attr = array('class' => 'bd');
-        $output .= html_writer::tag('div', '', $attr);
-
-        $output .= html_writer::end_tag('div');
+        $output .=  html_writer::start_div('', $attr);
+        $output .= html_writer::div('', 'hd', $attr);
+        $output .= html_writer::div('', 'bd', $attr);
+        $output .= html_writer::end_div();
 
         return $output;
 

@@ -252,10 +252,10 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
         $progress_bar = html_writer::tag('span', '', $attr);
 
         $attr          = array('id' => 'slider_border');
-        $slider_border = html_writer::tag('div', $progress_bar, $attr);
+        $slider_border = html_writer::div($progress_bar, '', $attr);
 
         $attr          = array('id' => 'loading_text');
-        $loading_text  = html_writer::tag('div', get_string('checkingforjava', 'mod_kalvidpres'), $attr);
+        $loading_text  = html_writer::div(get_string('checkingforjava', 'mod_kalvidpres'), '', $attr);
 
         $attr   = array('id' => 'progress_bar_container',
                         'style' => 'width:100%; padding-left:10px; padding-right:10px; visibility: hidden');
@@ -296,43 +296,28 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
 
         // Panel markup to load the KCW
         $attr = array('id' => 'video_panel');
-        $output .=  html_writer::start_tag('div', $attr);
-
-        $attr = array('class' => 'hd');
-        $output .= html_writer::tag('div', '', $attr);
-
-        $attr = array('class' => 'bd');
-
-        $output .= html_writer::tag('div', '', $attr);
-
+        $output .=  html_writer::start_div('', $attr);
+        $output .= html_writer::div('', 'hd', $attr);
+        $output .= html_writer::tag('div', 'bd', $attr);
         $output .= html_writer::end_tag('div');
 
         // Panel markup to preview video
         $attr = array('id' => 'video_preview_panel');
-        $output .=  html_writer::start_tag('div', $attr);
+        $output .=  html_writer::start_div('bd', $attr);
+        $output .= html_writer::div(get_string('video_preview_header', 'kalvidpres'), 'hd', $attr);
 
-        $attr = array('class' => 'hd');
-        $output .= html_writer::tag('div', get_string('video_preview_header', 'kalvidpres'), $attr);
+        $attr = array('id' => 'video_preview_body');
 
-        $attr = array('class' => 'bd',
-                      'id' => 'video_preview_body');
-
-        $output .= html_writer::tag('div', '', $attr);
+        $output .= html_writer::div('', 'bd', $attr);
 
         // Panel wait markup
-        $output .= html_writer::end_tag('div');
+        $output .= html_writer::end_div();
 
         $attr = array('id' => 'wait');
-        $output .=  html_writer::start_tag('div', $attr);
-
-        $attr = array('class' => 'hd');
-        $output .= html_writer::tag('div', '', $attr);
-
-        $attr = array('class' => 'bd');
-
-        $output .= html_writer::tag('div', '', $attr);
-
-        $output .= html_writer::end_tag('div');
+        $output .=  html_writer::start_div('bd', $attr);
+        $output .= html_writer::div('', 'hd', $attr);
+        $output .= html_writer::div('', 'bd', $attr);
+        $output .= html_writer::end_div();
 
         return $output;
     }
@@ -345,13 +330,11 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
         // tabindex -1 is required in order for the focus event to be capture
         // amongst all browsers
         $attr = array('id' => 'doc_notification',
-                      'class' => 'notification',
                       'tabindex' => '-1',
-                      //'style' => 'width:400px;height:200px'
                      );
-        $output = html_writer::tag('div', '', $attr);
+        $output = html_writer::div('', 'notification', $attr);
 
-        $output = html_writer::tag('div', /*get_string('flashminimum', 'local_kaltura')*/'', $attr);
+        $output = html_writer::div('', 'notification', $attr);
 
         $source = $CFG->wwwroot . '/local/kaltura/pix/kavatar.png';
 
@@ -363,7 +346,7 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
         $image_tag = html_writer::empty_tag('img', $attr);
 
         $attr = array('id' => 'document_thumbnail_container');
-        $output .= html_writer::tag('span', $image_tag, $attr);
+        $output .= html_writer::span($image_tag, 'notification', $attr);
 
 
         return $output;
@@ -379,9 +362,8 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
         // tabindex -1 is required in order for the focus event to be capture
         // amongst all browsers
         $attr = array('id' => 'notification',
-                      'class' => 'notification',
                       'tabindex' => '-1');
-        $output .= html_writer::tag('div', '', $attr);
+        $output .= html_writer::div('', 'notification', $attr);
 
         $attr = array('id' => 'video_thumbnail');
 
