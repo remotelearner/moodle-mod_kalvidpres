@@ -39,7 +39,7 @@ if (!empty($id)) {
         print_error('invalidcoursemodule');
     }
 
-    if (! $course = $DB->get_record('course', array('id' => $cm->course))) {
+    if (! $course = get_course($cm->course)) {
         print_error('coursemisconf');
     }
 
@@ -63,7 +63,7 @@ $PAGE->requires->js('/local/kaltura/js/swfobject.js', true);
 $PAGE->requires->js('/local/kaltura/js/kcwcallback.js', true);
 
 // Check if the user has the capability to manage activites
-$context = get_context_instance(CONTEXT_COURSE, $cm->course);
+$context = context_course::instance($cm->course);
 if (has_capability('moodle/course:manageactivities', $context)) {
     $admin_mode = '1';
 }
@@ -72,12 +72,6 @@ if (has_capability('moodle/course:manageactivities', $context)) {
 $result = local_kaltura_login(true, '');
 
 if ($result) {
-//    if (local_kaltura_has_mobile_flavor_enabled() && local_kaltura_get_enable_html5()) {
-//        $uiconf_id = local_kaltura_get_player_uiconf('presentation');
-//        $url = new moodle_url(local_kaltura_htm5_javascript_url($uiconf_id));
-//        $PAGE->requires->js($url, true);
-//        $PAGE->requires->js('/local/kaltura/js/frameapi.js', true);
-//    }
 
     add_to_log($course->id, 'kalvidpres', 'view video resource', 'view.php?id='.$cm->id, $kalvidpres->id, $cm->id);
 

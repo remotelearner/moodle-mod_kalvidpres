@@ -21,7 +21,7 @@
 // before any action that may take longer time to finish.
 
 function xmldb_kalvidpres_upgrade($oldversion) {
-    global $CFG, $DB;
+    global $DB;
 
     $dbman = $DB->get_manager();
 
