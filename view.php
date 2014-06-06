@@ -72,12 +72,6 @@ if (has_capability('moodle/course:manageactivities', $context)) {
 $result = local_kaltura_login(true, '');
 
 if ($result) {
-//    if (local_kaltura_has_mobile_flavor_enabled() && local_kaltura_get_enable_html5()) {
-//        $uiconf_id = local_kaltura_get_player_uiconf('presentation');
-//        $url = new moodle_url(local_kaltura_htm5_javascript_url($uiconf_id));
-//        $PAGE->requires->js($url, true);
-//        $PAGE->requires->js('/local/kaltura/js/frameapi.js', true);
-//    }
 
     add_to_log($course->id, 'kalvidpres', 'view video resource', 'view.php?id='.$cm->id, $kalvidpres->id, $cm->id);
 

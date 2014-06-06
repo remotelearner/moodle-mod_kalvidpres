@@ -429,26 +429,6 @@ class mod_kalvidpres_mod_form extends moodleform_mod {
 
                     }
                 }
-
-//                if ($data instanceof MoodleQuickForm_hidden) {
-//
-//                    if (array_key_exists('id', $data->_attributes) &&
-//                        (0 == strcmp('entry_id', $data->_attributes['id'])) &&
-//                        !empty($data->_attributes['id']) )  {
-//
-//                        $set_thumb = true;
-//                        print_object($data->getValue());
-//                    }
-//                }
-//
-//                if ($data instanceof MoodleQuickForm_static) {
-//                    if (array_key_exists('name', $data->_attributes) &&
-//                        (0 == strcmp('add_video_thumb', $data->_attributes['name'])) ) {
-//
-//                            $data->setAttributes(array('src' => 'did not work'));
-//                        }
-//                }
-
             }
         }
 

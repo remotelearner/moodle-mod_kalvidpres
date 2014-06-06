@@ -32,16 +32,10 @@ class mod_kalvidpres_renderer extends plugin_renderer_base {
     function display_mod_info($title) {
 
         $output = '';
-
-        $attr = array('for' => 'video_name');
-//        $output .= html_writer::tag('label', get_string('vid_prop_name', 'kalvidres'), $attr);
-//        $output .= '&nbsp;';
-
         $output .= html_writer::start_tag('b');
         $output .= html_writer::tag('div', $title);
         $output .= html_writer::end_tag('b');
         $output .= html_writer::empty_tag('br');
-
 
         return $output;
     }
@@ -84,12 +78,6 @@ class mod_kalvidpres_renderer extends plugin_renderer_base {
         if (!empty($kalvidpres->entry_id)) {
 
             $entry_obj = local_kaltura_get_ready_entry_object($kalvidpres->entry_id);
-
-            //$markup = local_kaltura_get_swfdoc_code($entry_obj->id);
-            //$attr   = array('type' => 'text/javascript');
-            //$output .= html_writer::start_tag('script', $attr);
-            //$output .= $markup;
-            //$output .= html_writer::end_tag('script');
             $player_markup = local_kaltura_get_kdp_presentation_player($entry_obj, $admin_mode);
             $output = html_writer::tag('div', $player_markup);
         }

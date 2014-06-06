@@ -45,7 +45,7 @@ class restore_kalvidpres_activity_structure_step extends restore_activity_struct
         global $DB;
 
         $data = (object)$data;
-        $oldid = $data->id;
+
         $data->course = $this->get_courseid();
 
         $data->timemodified = $this->apply_date_offset($data->timemodified);
